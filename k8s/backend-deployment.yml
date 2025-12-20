@@ -25,20 +25,32 @@ spec:
             - secretRef:
                 name: postgres-secret
 
+          # Readiness probe: vérifie si l'app est prête à recevoir du trafic
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: 8080
-            initialDelaySeconds: 10
+            initialDelaySeconds: 15
             periodSeconds: 5
-            timeoutSeconds: 2
-            failureThreshold: 6
+            timeoutSeconds: 3
+            failureThreshold: 3
+            successThreshold: 1
 
+          # Liveness probe: vérifie si l'app est toujours vivante
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: 8080
             initialDelaySeconds: 30
             periodSeconds: 10
-            timeoutSeconds: 2
+            timeoutSeconds: 3
             failureThreshold: 3
+
+          # Resource limits (bonne pratique)
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
