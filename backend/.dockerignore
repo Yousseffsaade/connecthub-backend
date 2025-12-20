@@ -1,7 +1,47 @@
-.gradle
-build
-out
-.idea
+# Navigate to backend folder
+cd backend
+
+# Create .dockerignore file
+cat > .dockerignore << 'EOF'
+# Gradle
+.gradle/
+build/
+!build/libs/*.jar
+gradle-wrapper.jar
+gradlew
+gradlew.bat
+
+# IDE
+.idea/
+.vscode/
 *.iml
+*.ipr
+*.iws
+.project
+.classpath
+.settings/
+
+# OS
 .DS_Store
-.git
+Thumbs.db
+
+# Logs
+*.log
+
+# Test
+test/
+src/test/
+
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+Jenkinsfile
+EOF
