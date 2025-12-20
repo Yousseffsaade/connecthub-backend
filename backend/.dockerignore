@@ -1,17 +1,14 @@
 # Navigate to backend folder
 cd backend
 
-# Create .dockerignore file
+# Recreate the correct .dockerignore
 cat > .dockerignore << 'EOF'
-# Gradle
+# Gradle cache and build output
 .gradle/
 build/
 !build/libs/*.jar
-gradle-wrapper.jar
-gradlew
-gradlew.bat
 
-# IDE
+# IDE files
 .idea/
 .vscode/
 *.iml
@@ -21,27 +18,30 @@ gradlew.bat
 .classpath
 .settings/
 
-# OS
+# OS files
 .DS_Store
 Thumbs.db
 
 # Logs
 *.log
 
-# Test
-test/
+# Tests (exclude test files from build context)
 src/test/
 
 # Git
 .git/
 .gitignore
+.gitattributes
 
 # Documentation
 README.md
-*.md
 
 # CI/CD
 .github/
 .gitlab-ci.yml
 Jenkinsfile
+
+# Environment
+.env
+.env.local
 EOF
